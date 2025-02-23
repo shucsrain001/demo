@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <!-- 定义公共变量 -->
+    <property name="LOG_PATH" value="./logs"/>
+    <property name="APP_NAME" value="demo"/>
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) [%15.15(%X{traceId:-})] %cyan(%pid) --- [%15.15(%thread)] %cyan(%-40.40(%logger{40})) : %msg%n"/>
+
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+           <!-- <pattern>%d %5p | %t | %-55logger{55} | %m %n</pattern>-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level)  [%5.5(%thread)] %cyan(%-40.40(%logger{40})) : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${SERVER_LOG_PATH}/test_%d{yyyyMMdd}_debug_%i.log</fileNamePattern>
+            <maxFileSize>30MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d %5p | %t | %-55logger{55} | %m %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${SERVER_LOG_PATH}/test_%d{yyyyMMdd}_%i.log</fileNamePattern>
+            <maxFileSize>30MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d %5p | %t | %-55logger{55} | %m %n</pattern>
+        </encoder>
+    </appender>
+
+
+<!--    <logger name="com.zaxxer.hikari" level="DEBUG"/>-->
+
+
+    <root level="debug">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DEBUG_FILE"/>
+    </root>
+
+</configuration>
