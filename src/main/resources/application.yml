@@ -2,23 +2,36 @@ server:
   port: 8080
 
 spring:
+  config:
+    import:
+      - nacos:demo.yml
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        max-retry: 5
+        config-long-poll-timeout: 3000
+        timeout: 3000
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        refresh-enabled: true
   application:
     name: demo-app
-  elasticsearch:
-    uris: http://192.168.3.33:9200
-  data:
-    redis:
-      host: 192.168.3.33
-      password: mypassword
-      port: 6379
-      database: 0
-      lettuce:
-        pool:
-          max-active: 20
-          max-idle: 10       # ???????
-          min-idle: 5      # ???????
-          max-wait: 1000ms
-      timeout: 10000ms
+#  elasticsearch:
+#    uris: http://192.168.3.33:9200
+#  data:
+#    redis:
+#      host: 192.168.3.33
+#      password: mypassword
+#      port: 6379
+#      database: 0
+#      lettuce:
+#        pool:
+#          max-active: 20
+#          max-idle: 10       # ???????
+#          min-idle: 5      # ???????
+#          max-wait: 1000ms
+#      timeout: 10000ms
 
 
 #http:
@@ -29,3 +42,13 @@ spring:
 logging:
   level:
     root: info
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  cloud:
+    nacos:
+      config:
+        namespace: 6439881d-b310-4ca7-a017-9551cf2b8735

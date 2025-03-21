@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/redis")
 public class RedisController {
 
-    @Autowired
+//    @Autowired
     private RedisUtils redisUtils;
 
     // 保存数据

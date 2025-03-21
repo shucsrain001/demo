@@ -11,10 +11,10 @@ import java.util.concurrent.TimeUnit;
 /**
  *
  */
-@Service
+//@Service
 public class RedisUtils {
 
-    @Autowired
+//    @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
     // 保存数据

@@ -17,15 +17,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class ElasticsearchConfig extends ElasticsearchConfiguration {
 
     private static final String LOCAL_DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
-    @Value("${spring.elasticsearch.uris}")
+//    @Value("${spring.elasticsearch.uris}")
     private List<String> uris;
 
-    @Override
+//    @Override
     public ClientConfiguration clientConfiguration() {
         // 去除http开头
         uris = uris.stream().map(uri -> {
@@ -39,7 +39,7 @@ public class ElasticsearchConfig extends ElasticsearchConfiguration {
                 .build();
     }
 
-    @Bean
+//    @Bean
     public ElasticsearchCustomConversions elasticsearchCustomConversions() {
         // 注入自定义转换器处理LocalDateTime数据
         List<Converter<?, ?>> converters = new ArrayList<>(16);
@@ -51,7 +51,7 @@ public class ElasticsearchConfig extends ElasticsearchConfiguration {
     /**
      * LocalDateTime转String
      */
-    @WritingConverter
+//    @WritingConverter
     private enum LocalDateTimeToStringConverter implements Converter<LocalDateTime, String> {
         /**
          * 实例化
@@ -67,7 +67,7 @@ public class ElasticsearchConfig extends ElasticsearchConfiguration {
     /**
      * String转LocalDateTime
      */
-    @ReadingConverter
+//    @ReadingConverter
     private enum StringToLocalDateTimeConverter implements Converter<String, LocalDateTime> {
         /**
          * 实例化

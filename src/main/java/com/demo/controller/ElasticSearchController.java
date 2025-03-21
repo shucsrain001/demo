@@ -39,7 +39,7 @@ public class ElasticSearchController {
 //
 //
 
-    @Autowired
+   // @Autowired
     private ElasticsearchOperations elasticsearchOperations;
 
     /// /    @ApiOperation(value = "es测试接口", notes = "es测试接口")
