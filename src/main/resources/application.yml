@@ -51,4 +51,5 @@ spring:
   cloud:
     nacos:
       config:
-        namespace: 6439881d-b310-4ca7-a017-9551cf2b8735
+#        namespace: 6439881d-b310-4ca7-a017-9551cf2b8735
+         namespace: xxy
